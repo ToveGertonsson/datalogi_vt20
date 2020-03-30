@@ -1,0 +1,29 @@
+Exercise 1. 
+We will look at how many name pairs there are in the files pairs1 and pairs2. 
+10130
+9781
+Here I have used the code:
+for file in pairs1.txt pairs2.txt
+do
+cat pairs2.txt |wc -l >> report1
+done
+
+Hence I have looped through the files pairs1.txt and pairs2.txt, and saved the number of lines in this file. So there are 10310 pairs (edges) in pairs1.txt and 9781 pairs (edges) in pairs2.txt.
+
+Exercise 2.
+We will now at how many of the edges touch the node "fp.2.Luci_02H12.ctg.ctg7180000025322". We will use this using grep. 
+Here I used the code:
+
+for file in pairs1.txt pairs2.txt
+do
+cat $file | grep fp.2.Luci_02H12.ctg.ctg7180000025322 | wc -l
+done
+
+and the result was 42 matches for pairs1.txt and 0 matches for pairs2.txt.
+
+Exercise 3. 
+The command  awk '{if ($1<$2) print $2" "$1; else print $1" "$2}' will swap places of column 1 and 2 if the value of column 1 is less that column 2. 
+Otherwise it will do nothing. This makes it much easier to arrange undirected edges.  
+Here I used the code:
+cat pairs1.txt pairs2.txt | awk '{if (<) print " "; else print " "}' | sort | uniq -d | wc -l
+i.e. I first opened both files, reversed the order of columns where the first column contained a higher value than the second, sorted the lines, displayed only  duplicate lines and finally counted the number of lines. The output was 823. 

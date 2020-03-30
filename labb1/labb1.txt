@@ -1,0 +1,30 @@
+
+echo "Exercise 1."
+
+for file in pairs1.txt pairs2.txt
+do
+echo "Number of edges in "$file":" 
+
+cat $file | wc -l
+done
+
+
+echo "Exercise 2."
+
+for file in pairs1.txt pairs2.txt
+do
+echo "Number of edges touching the node fp.2.Luci_02H12.ctg.ctg7180000025322 in " $file":"
+
+cat $file | grep fp.2.Luci_02H12.ctg.ctg7180000025322 | wc -l
+done
+
+
+echo "Exercise 3."
+echo "The command "awk '{if ($1<$2) print $2" "$1; else print $1" "$2}'" will swap places of column 1 and 2 (of a given file) if the value of column 1 is less than that of column 2. I tried this command on a small file I created myself (which I will not display here)."
+
+echo "Exercise 4."
+
+echo "Number of shared edges in pairs1.txt and pairs2.txt:"
+
+cat pairs1.txt pairs2.txt | awk '{if ($1<$2) print $2" "$1; else print $1" "$2}' | sort | uniq -d | wc -l
+
